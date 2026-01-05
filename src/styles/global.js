@@ -102,6 +102,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  bottomButtonContainer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    padding: 10,
+    backgroundColor: 'transparent',
+  },
   tooltipCon: {
     backgroundColor: 'black',
     // alignSelf: 'center',

@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {
   Alert,
   Platform,
@@ -19,9 +20,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../styles/global';
 import { Dropdown, MultiSelectDropdown } from 'react-native-paper-dropdown';
-import GobackIcon from '../assets/goback.svg';
-import InsertIcon from '../assets/insert-icon.svg';
-import UpdateIcon from '../assets/update-icon.svg';
+import RpIconButton from '../components/RpIconButton';
+import RpButton from '../components/RpButton';
+import RpTextInput from '../components/RpTextInput';
+import RpDropdown from '../components/RpDropdown';
+import RpAppHeader from '../components/RpAppHeader';
+import RpSideMenu from '../components/RpSideMenu';
+import RpSideMenuContent from '../components/RpSideMenuContent';
 
 const theme = {
   ...MD3LightTheme, // or MD3DarkTheme
@@ -42,6 +47,7 @@ const SEX_TY_OPTIONS = [
 
 const UserInfoScreen = ({ route }) => {
   const thisName = '■ ' + UserInfoScreen.name + ' ::: ';
+  const [menuVisible, setMenuVisible] = useState(false);
   const date = new Date(+new Date() + 3240 * 10000).toISOString().split('T')[0];
   const time = new Date().toTimeString().split(' ')[0];
   console.log(thisName + '*************************** ' + date + ' ' + time);
@@ -165,31 +171,18 @@ const UserInfoScreen = ({ route }) => {
   return (
     <PaperProvider theme={theme}>
       <SafeAreaView style={{ flex: 1 }}>
-        <View style={[styles.viewRowContainer, {}]}>
-          <View style={{ backgroundColor: 'darkblue' }}>
-            <IconButton
-              icon="arrow-left"
-              iconColor="white"
-              containerColor="darkblue"
-              mode="contained"
-              onPress={() => navigation.goBack()}
-            />
-          </View>
-          <Text
-            style={{
-              fontSize: 24,
-              width: '100%',
-              height: 55,
-              paddingTop: 10,
-              margin: 0,
-              backgroundColor: 'darkblue',
-              color: 'white',
-            }}
-            variant="headlineMedium"
-          >
-            사용자 정보
-          </Text>
-        </View>
+        <RpAppHeader
+          title="사용자 등록"
+          showBack={true}
+          onBackPress={() => navigation.goBack()}
+          onMenuPress={() => setMenuVisible(true)}
+        />
+        <RpSideMenu visible={menuVisible} onClose={() => setMenuVisible(false)}>
+          <RpSideMenuContent
+            navigation={navigation}
+            onClose={() => setMenuVisible(false)}
+          />
+        </RpSideMenu>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={{ flex: 1 }}
@@ -197,53 +190,45 @@ const UserInfoScreen = ({ route }) => {
         >
           <View style={[styles.viewTotalContainer, {}]}>
             <View style={[styles.viewColumnContainer, {}]}>
-              <TextInput
+              <RpTextInput
                 id="txtUserId"
                 style={{ width: '100%', marginBottom: 5 }}
                 label="사용자ID"
-                mode="outlined"
                 placeholder="사용자ID"
                 value={userId}
                 onChangeText={onChangeTextUserId}
                 editable={enableInputYn}
               />
-              <TextInput
+              <RpTextInput
                 id="txtName"
                 style={{ width: '100%', marginBottom: 5 }}
                 label="성명"
-                mode="outlined"
                 placeholder="성명"
                 value={name}
                 onChangeText={onChangeTextName}
               />
-              <TextInput
+              <RpTextInput
                 id="txtAge"
                 style={{ width: '100%', marginBottom: 5 }}
                 label="나이"
-                mode="outlined"
                 placeholder="나이"
                 value={age}
-                // onChangeText={onChangeTextAge}
                 onChangeText={age => {
                   setAge(age.replace(/[^0-9]/g, ''));
                 }}
               />
-              <View style={{ marginBottom: 5 }}>
-                <Dropdown
-                  id="cbxSexTy"
-                  label="성별"
-                  placeholder="성별 선택..."
-                  options={SEX_TY_OPTIONS}
-                  value={sexTy}
-                  onSelect={onChangeTextSexTy}
-                  mode="outlined"
-                />
-              </View>
-              <TextInput
+              <RpDropdown
+                id="cbxSexTy"
+                label="성별"
+                placeholder="성별 선택..."
+                options={SEX_TY_OPTIONS}
+                value={sexTy}
+                onSelect={onChangeTextSexTy}
+              />
+              <RpTextInput
                 id="txtNote"
                 style={{ width: '100%', marginBottom: 5 }}
                 label="비고"
-                mode="outlined"
                 placeholder="비고"
                 value={note}
                 onChangeText={onChangeTextNote}
@@ -262,20 +247,13 @@ const UserInfoScreen = ({ route }) => {
                 },
               ]}
             >
-              <Button
-                icon="plus-circle"
-                style={{
-                  height: 50,
-                  // marginTop: 20,
-                  // marginBottom: 20,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-                mode="contained"
+              <RpButton
+                title="사용자 등록 혹은 수정"
+                iconOcticonsName="plus-circle"
+                width="100%"
+                borderRadius={5}
                 onPress={handleInsertRowOrUpdateRow}
-              >
-                사용자 등록 혹은 수정
-              </Button>
+              />
             </View>
           </View>
         </KeyboardAvoidingView>
