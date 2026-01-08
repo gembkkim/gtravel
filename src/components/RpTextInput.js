@@ -9,6 +9,7 @@ const RpTextInput = ({
   placeholder,
   value,
   onChangeText,
+  secureTextEntry = false,
   editable = true,
   /* optional */
   rightIcon,
@@ -23,6 +24,7 @@ const RpTextInput = ({
       placeholder={placeholder}
       value={value}
       onChangeText={onChangeText}
+      secureTextEntry={secureTextEntry}
       right={
         rightIcon ? (
           <TextInput.Icon icon={rightIcon} onPress={onRightPress} />

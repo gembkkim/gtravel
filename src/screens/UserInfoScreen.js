@@ -62,7 +62,7 @@ const UserInfoScreen = ({ route }) => {
     route.params.age ? String(route.params.age) : '',
   );
   const [sexTy, setSexTy] = useState(route.params.sex_ty || '');
-  const [note, setNote] = useState(route.params.note || '');
+  const [rmk, setRmk] = useState(route.params.rmk || '');
   const [enableInputYn, setEnableInputYn] = useState(true);
 
   useEffect(() => {
@@ -87,8 +87,8 @@ const UserInfoScreen = ({ route }) => {
   const onChangeTextSexTy = sexTy => {
     setSexTy(sexTy);
   };
-  const onChangeTextNote = note => {
-    setNote(note);
+  const onChangeTextRmk = rmk => {
+    setRmk(rmk);
   };
 
   const handleInsertRowOrUpdateRow = async () => {
@@ -102,12 +102,12 @@ const UserInfoScreen = ({ route }) => {
     }
     try {
       const args = {
-        sp_name: 'asp_users_u',
+        sp_name: 'asp_usrs_u',
         user_id: userId,
         name: name,
         age: age,
         sex_ty: sexTy,
-        note: note,
+        rmk: rmk,
       };
       console.log(
         thisName +
@@ -141,7 +141,7 @@ const UserInfoScreen = ({ route }) => {
     setName(items[0].name);
     setAge(items[0].age.toString());
     setSexTy(items[0].sex_ty);
-    setNote(items[0].note);
+    setRmk(items[0].rmk);
     // console.log("items.user_id: " + items[0].user_id);
   }, [items]);
 
@@ -149,7 +149,7 @@ const UserInfoScreen = ({ route }) => {
     setLoading(true);
     try {
       const args = {
-        sp_name: 'asp_users_k',
+        sp_name: 'asp_usrs_k',
         user_id_s: userId,
       };
       const data = await asp(args);
@@ -226,12 +226,12 @@ const UserInfoScreen = ({ route }) => {
                 onSelect={onChangeTextSexTy}
               />
               <RpTextInput
-                id="txtNote"
+                id="txtRmk"
                 style={{ width: '100%', marginBottom: 5 }}
                 label="비고"
                 placeholder="비고"
-                value={note}
-                onChangeText={onChangeTextNote}
+                value={rmk}
+                onChangeText={onChangeTextRmk}
               />
             </View>
           </View>

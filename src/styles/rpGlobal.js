@@ -118,6 +118,21 @@ const styles = StyleSheet.create({
   dropdownContainer: {
     marginBottom: 8,
   },
+
+  /* 스위치 */
+  switchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 12,
+    marginBottom: 12,
+    marginVertical: 12,
+  },
+
+  switchLabel: {
+    fontSize: 14,
+    color: '#333',
+  },
 });
 
 export default styles;

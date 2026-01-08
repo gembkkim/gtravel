@@ -4,8 +4,8 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import styles from '../styles/rpGlobal';
 
 const RpButton = ({
-  title = '사용자 추가하기',
-  iconOcticonsName = 'plus-circle',
+  title = '버튼이름 title 을 추가해 주세요',
+  iconOcticonsName = '',
   width = '100%',
   borderRadius = 5,
   onPress,
@@ -24,12 +24,15 @@ const RpButton = ({
       ]}
     >
       <View style={styles.rpButtonContent}>
-        <Octicons
-          name={iconOcticonsName}
-          size={20}
-          color="white"
-          style={{ marginRight: 8 }}
-        />
+        {iconOcticonsName !== '' && (
+          <Octicons
+            name={iconOcticonsName === '' ? '' : iconOcticonsName}
+            size={20}
+            color="white"
+            style={{ marginRight: 8 }}
+          />
+        )}
+
         <Text style={styles.rpButtonText}>{title}</Text>
       </View>
     </Pressable>

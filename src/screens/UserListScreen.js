@@ -17,6 +17,7 @@ import {
   Tooltip,
 } from 'react-native-paper';
 import { asp } from '../apis/apiService';
+import { useAuth } from '../context/AuthContext';
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/global';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -50,6 +51,11 @@ const UserListScreen = ({ navigation }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [userIdS, setUserIdS] = useState('');
+  const { user, logout } = useAuth();
+
+  console.log(thisName + 'user: ' + JSON.stringify(user));
+
+  //const theme = useTheme();
 
   useEffect(() => {
     setUserIdS('');
@@ -64,7 +70,7 @@ const UserListScreen = ({ navigation }) => {
     setLoading(true);
     try {
       const args = {
-        sp_name: 'asp_users_s',
+        sp_name: 'asp_usrs_s',
         user_id_s: userIdS,
       };
       console.log(thisName + 'args: ' + JSON.stringify(args));
@@ -101,7 +107,7 @@ const UserListScreen = ({ navigation }) => {
           onPress: async () => {
             try {
               const args = {
-                sp_name: 'asp_users_d',
+                sp_name: 'asp_usrs_d',
                 user_id: user_id,
               };
               console.log(thisName + 'args: ' + JSON.stringify(args));
@@ -129,7 +135,7 @@ const UserListScreen = ({ navigation }) => {
         variant="bodyMedium"
       >
         {/* UserId: {item.user_id}, Name: {item.name}, Age: {item.age}, SexTy:
-        {item.sex_ty}, Note: {item.note} */}
+        {item.sex_ty}, Rmk: {item.rmk} */}
         {item.user_id} {item.name}
       </Text>
       <RpIconButton
@@ -142,7 +148,7 @@ const UserListScreen = ({ navigation }) => {
             name: item.name,
             age: item.age,
             sex_ty: item.sex_ty,
-            note: item.note,
+            rmk: item.rmk,
           })
         }
       />
@@ -223,7 +229,7 @@ const UserListScreen = ({ navigation }) => {
                     name: '',
                     age: '',
                     sex_ty: '',
-                    note: '',
+                    rmk: '',
                   })
                 }
               />
