@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
   /* Header */
   appHeaderContainer: {
     height: 56,
+    marginTop: 5,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'black',

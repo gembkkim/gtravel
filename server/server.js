@@ -1,10 +1,30 @@
-const express = require('express');
-const sql = require('mssql');
-const cors = require('cors');
+import express from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
+
+import mailRouter from './routes/mail.js';
+
+// const express = require('express');
+// const dotenv = require('dotenv');
+// const mailRouter = require('./routes/mail');
+
+import sql from 'mssql';
+import cors from 'cors';
+
+console.log('MAIL_ID:', process.env.MAIL_ID);
+console.log('MAIL_PW:', process.env.MAIL_PW ? 'OK' : 'MISSING');
 
 const app = express();
 app.use(cors()); // 모든 도메인에서의 요청 허용
 app.use(express.json()); // JSON 요청 본문을 파싱하기 위해
+/* 미들웨어 */
+// app.use(express.json());
+/* 라우터 등록 */
+app.use('/', mailRouter);
+/* 헬스 체크 */
+app.get('/', (req, res) => {
+  res.send('G-Travel Mail Server Running');
+});
 
 const logYn = false;
 
@@ -458,9 +478,9 @@ app.post('/args', async (req, res) => {
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
-  console.log('🔥 Server listening on', PORT);
+  console.log('?? Server listening on', PORT);
 });
 
 // app.listen(3000, "0.0.0.0", () => {
-//   console.log("🔥 Server listening on 0.0.0.0:3000");
+//   console.log("?? Server listening on 0.0.0.0:3000");
 // });

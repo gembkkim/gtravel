@@ -57,6 +57,9 @@ const RpSideMenuContent = ({ navigation, onClose }) => {
       </MenuSection>
 
       <MenuSection title="환경설정">
+        <MenuItem label="아이디찾기" onPress={() => go('FindEmail')} />
+        <MenuItem label="비밀번호찾기" onPress={() => go('FindPassword')} />
+        <MenuItem label="회원가입" onPress={() => go('SignUp')} />
         <MenuItem
           label="로그아웃"
           onPress={() => {

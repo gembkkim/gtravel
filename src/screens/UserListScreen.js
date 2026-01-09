@@ -220,7 +220,6 @@ const UserListScreen = ({ navigation }) => {
             >
               <RpButton
                 title="사용자 추가하기"
-                iconOcticonsName="plus-circle"
                 width="100%"
                 borderRadius={5}
                 onPress={() =>
