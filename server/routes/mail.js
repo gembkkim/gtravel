@@ -39,11 +39,11 @@ router.post('/send-password-mail', async (req, res) => {
     await transporter.sendMail({
       from: `"G-Travel" <${process.env.MAIL_ID}>`,
       to: email,
-      subject: '[G-Travel] 비밀번호 안내',
+      subject: '[GTravel] 비밀번호 안내',
       html: `
         <p>안녕하세요.</p>
         <p>요청하신 비밀번호 안내 메일입니다.</p>
-        <p>비밀번호 : 비밀번호는 흰 글자색으로 되어 있습니다. 아래줄을 선택하세요</p>
+        <p>비밀번호 : 아래줄을 선택하세요</p>
         <p style="color: white;">${pwd}</p>
       `,
     });
