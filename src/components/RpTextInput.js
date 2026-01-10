@@ -4,16 +4,17 @@ import styles from '../styles/rpGlobal';
 
 const RpTextInput = ({
   id,
-  style,
   label,
   placeholder,
   value,
   onChangeText,
+  disabled = false,
   secureTextEntry = false,
   editable = true,
   /* optional */
   rightIcon,
   onRightPress,
+  style = { borderRadius: 5, marginBottom: 12, width: '100%' },
 }) => {
   return (
     <TextInput
@@ -23,6 +24,7 @@ const RpTextInput = ({
       mode="outlined"
       placeholder={placeholder}
       value={value}
+      disabled={disabled}
       onChangeText={onChangeText}
       secureTextEntry={secureTextEntry}
       right={

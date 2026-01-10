@@ -17,6 +17,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import RpTextInput from '../components/RpTextInput';
 import RpButton from '../components/RpButton';
 import RpSwitch from '../components/RpSwitch';
+import RpText from '../components/RpText';
 
 const SignInScreen = ({ navigation }) => {
   const thisName = '■ ' + SignInScreen.name + ' ::: ';
@@ -50,6 +51,7 @@ const SignInScreen = ({ navigation }) => {
   const handleSignin = async () => {
     if (email === '' || pwd === '') {
       setErrorMsg('이메일 혹은 비밀번호를 입력해 주세요.');
+      return;
     }
 
     setLoading(true);
@@ -130,7 +132,9 @@ const SignInScreen = ({ navigation }) => {
 
           {/* 에러 */}
           {errorMsg !== '' && (
-            <Text style={{ color: 'red', marginBottom: 10 }}>{errorMsg}</Text>
+            <RpText style={{ color: 'red', marginBottom: 10 }}>
+              {errorMsg}
+            </RpText>
           )}
 
           {/* 자동 로그인 */}

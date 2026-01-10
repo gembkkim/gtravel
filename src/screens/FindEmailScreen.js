@@ -60,6 +60,7 @@ const FindEmailScreen = ({ navigation }) => {
   const handleFindEmail = async () => {
     if (name === '' || ncnm === '' || cdmaNo === '') {
       setErrorMsg('성명, 별명, 휴대전화를 입력해 주세요.');
+      return;
     }
 
     setLoading(true);
@@ -157,9 +158,9 @@ const FindEmailScreen = ({ navigation }) => {
 
               {/* 에러 */}
               {errorMsg !== '' && (
-                <Text style={{ color: 'red', marginBottom: 10 }}>
+                <RpText style={{ color: 'red', marginBottom: 10 }}>
                   {errorMsg}
-                </Text>
+                </RpText>
               )}
 
               {/* 아이디 찾기 버튼 */}

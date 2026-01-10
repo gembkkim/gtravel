@@ -40,7 +40,6 @@ const theme = {
 };
 
 const SEX_TY_OPTIONS = [
-  { label: '', value: '' },
   { label: '남성', value: 'M' },
   { label: '여성', value: 'F' },
 ];
@@ -192,7 +191,7 @@ const UserInfoScreen = ({ route }) => {
             <View style={[styles.viewColumnContainer, {}]}>
               <RpTextInput
                 id="txtUserId"
-                style={{ width: '100%', marginBottom: 5 }}
+                style={{ width: '100%' }}
                 label="사용자ID"
                 placeholder="사용자ID"
                 value={userId}
@@ -201,7 +200,7 @@ const UserInfoScreen = ({ route }) => {
               />
               <RpTextInput
                 id="txtName"
-                style={{ width: '100%', marginBottom: 5 }}
+                style={{ width: '100%' }}
                 label="성명"
                 placeholder="성명"
                 value={name}
@@ -209,7 +208,7 @@ const UserInfoScreen = ({ route }) => {
               />
               <RpTextInput
                 id="txtAge"
-                style={{ width: '100%', marginBottom: 5 }}
+                style={{ width: '100%' }}
                 label="나이"
                 placeholder="나이"
                 value={age}
@@ -221,13 +220,15 @@ const UserInfoScreen = ({ route }) => {
                 id="cbxSexTy"
                 label="성별"
                 placeholder="성별 선택..."
+                borderRadius={10}
                 options={SEX_TY_OPTIONS}
                 value={sexTy}
                 onSelect={onChangeTextSexTy}
+                contentStyle={{ maxHeight: 200 }}
               />
               <RpTextInput
                 id="txtRmk"
-                style={{ width: '100%', marginBottom: 5 }}
+                style={{ width: '100%' }}
                 label="비고"
                 placeholder="비고"
                 value={rmk}

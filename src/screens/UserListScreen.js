@@ -18,7 +18,7 @@ import {
 } from 'react-native-paper';
 import { asp } from '../apis/apiService';
 import { useAuth } from '../context/AuthContext';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from '../styles/global';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from 'react-native-paper';
@@ -31,6 +31,7 @@ import RpTextInput from '../components/RpTextInput';
 import RpAppHeader from '../components/RpAppHeader';
 import RpSideMenu from '../components/RpSideMenu';
 import RpSideMenuContent from '../components/RpSideMenuContent';
+import RpText from '../components/RpText';
 
 const theme = {
   ...MD3LightTheme, // or MD3DarkTheme
@@ -55,7 +56,7 @@ const UserListScreen = ({ navigation }) => {
 
   console.log(thisName + 'user: ' + JSON.stringify(user));
 
-  //const theme = useTheme();
+  // const theme = useTheme();
 
   useEffect(() => {
     setUserIdS('');
@@ -130,14 +131,14 @@ const UserListScreen = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <View style={[styles.viewRowContainer, { alignItems: 'center' }]}>
-      <Text
+      <RpText
         style={[styles.textCon, { width: '75%', fontSize: 16 }]}
         variant="bodyMedium"
       >
         {/* UserId: {item.user_id}, Name: {item.name}, Age: {item.age}, SexTy:
         {item.sex_ty}, Rmk: {item.rmk} */}
         {item.user_id} {item.name}
-      </Text>
+      </RpText>
       <RpIconButton
         iconMaterialIconsName="update"
         iconSize={24}
@@ -166,7 +167,7 @@ const UserListScreen = ({ navigation }) => {
       <SafeAreaView style={styles.safeAreaViewContainer}>
         <RpAppHeader
           title="사용자 목록"
-          showBack={false}
+          showBack={true}
           onBackPress={() => navigation.goBack()}
           onMenuPress={() => setMenuVisible(true)}
         />

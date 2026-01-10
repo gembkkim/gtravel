@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const MenuSection = ({ title, children }) => {
   const [open, setOpen] = useState(true);
+  const { user, logout } = useAuth();
 
   return (
     <View style={styles.menuSection}>
@@ -36,7 +37,7 @@ const MenuItem = ({ label, onPress }) => (
 
 const RpSideMenuContent = ({ navigation, onClose }) => {
   // const navigation = useNavigation();
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
   const go = screen => {
     onClose();
     navigation.navigate(screen);
@@ -60,6 +61,10 @@ const RpSideMenuContent = ({ navigation, onClose }) => {
         <MenuItem label="아이디찾기" onPress={() => go('FindEmail')} />
         <MenuItem label="비밀번호찾기" onPress={() => go('FindPassword')} />
         <MenuItem label="회원가입" onPress={() => go('SignUp')} />
+        {/* user.email 이 존재할 때만 표시 */}
+        {user && user?.email !== '' && (
+          <MenuItem label="비밀번호변경" onPress={() => go('ChangePassword')} />
+        )}
         <MenuItem
           label="로그아웃"
           onPress={() => {

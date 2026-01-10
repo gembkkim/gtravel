@@ -9,6 +9,7 @@ const RpButton = ({
   width = '100%',
   borderRadius = 5,
   onPress,
+  style = { marginBottom: 12, width: '100%' },
 }) => {
   return (
     <Pressable
@@ -16,11 +17,12 @@ const RpButton = ({
       android_ripple={{ color: '#ddd' }}
       style={({ pressed }) => [
         styles.rpButtonContainer,
-        {
-          width,
-          borderRadius,
-          opacity: pressed ? 0.85 : 1,
-        },
+        style,
+        // {
+        //   width,
+        //   borderRadius,
+        //   opacity: pressed ? 0.85 : 1,
+        // },
       ]}
     >
       <View style={styles.rpButtonContent}>

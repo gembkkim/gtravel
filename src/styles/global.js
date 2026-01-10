@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   viewRowContainer: {
     // flex: 1,
-    marginBottom: 10,
+    // marginBottom: 10,
     flexDirection: 'row',
     // alignItems: "center",
     justifyContent: 'space-between',

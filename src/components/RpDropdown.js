@@ -11,6 +11,7 @@ const RpDropdown = ({
   value,
   onSelect,
   mode = 'outlined',
+  style = { borderRadius: 5 },
   containerStyle,
 }) => {
   return (
@@ -23,6 +24,7 @@ const RpDropdown = ({
         value={value}
         onSelect={onSelect}
         mode={mode}
+        style={[styles.dropdownCon, style]}
       />
     </View>
   );

@@ -95,6 +95,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 8,
+    borderRadius: 5,
   },
 
   /* 버튼 내부 정렬 */
@@ -111,13 +113,22 @@ const styles = StyleSheet.create({
   },
 
   textInputCon: {
-    height: 56,
+    // height: 56,
+    height: 50,
+    borderRadius: 20,
     backgroundColor: 'white',
+    marginBottom: 12,
   },
 
   /* 드롭다운 */
   dropdownContainer: {
-    marginBottom: 8,
+    marginBottom: 12,
+  },
+
+  dropdownCon: {
+    // height: 56,
+    backgroundColor: 'lightyellow',
+    borderRadius: 5,
   },
 
   /* 스위치 */
